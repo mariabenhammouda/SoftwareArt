@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetFrameRate(10);
+    ofSetFrameRate(5);
     sliderGroup.setName("sliders");
     sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
     sliderGroup.add(Opacity.set("Opacity",190,50,255));
