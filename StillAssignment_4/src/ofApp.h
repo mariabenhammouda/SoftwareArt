@@ -24,7 +24,7 @@ class ofApp : public ofBaseApp{
     ofEasyCam mainCam;
     ofBoxPrimitive box;
     vector<ofBoxPrimitive> boxes;
-    int MaxBoxnumber=10;
+    int MaxBoxnumber=20;
     int spaceRange=300;
     ofLight light;
     ofPolyline myline;
@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
     ofParameterGroup sliderGroup;
     ofParameterGroup mainGroup;
     ofParameter<int> Thickness;
-    ofParameter<int> BoxMax;
+
 
 
     

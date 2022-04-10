@@ -6,13 +6,15 @@ void ofApp::setup(){
     
     sliderGroup.setName("sliders");
     sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
+   
+    
   //  sliderGroup.add(BoxMax.set("Number of boxes", 5, 1, 100));
     mainGroup.add(sliderGroup);
     gui.setup(mainGroup);
     
     //ofSetFrameRate(5);
    // ofSetColor(.colours->x, line.colours->y,line.colours->z);
-    ofBackground(0); // set the window background to white
+    ofBackground(255,95,31); // set the window background to white
     mainCam.setPosition(0, 0, 400); // set initial position for our easyCam 3D viewer
     for (int i=0; i<MaxBoxnumber; i++){
         ofBoxPrimitive newbox;
@@ -66,6 +68,12 @@ void ofApp::keyPressed(int key){
         myline.close();
       
         
+    }
+    if (key == OF_KEY_UP){
+        spaceRange+=10;
+    }
+    if (key == OF_KEY_DOWN){
+        spaceRange-=10;
     }
 }
 
