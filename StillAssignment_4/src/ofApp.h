@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -34,7 +35,7 @@ class ofApp : public ofBaseApp{
     ofParameterGroup mainGroup;
     ofParameter<int> Thickness;
     ofParameter<int> BoxMax;
-    lines line;
+
 
     
 };
