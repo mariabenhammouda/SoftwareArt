@@ -2,46 +2,71 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetFrameRate(5);
+   // ofEnableDepthTest();
+    
     sliderGroup.setName("sliders");
     sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
-    sliderGroup.add(Opacity.set("Opacity",190,50,255));
-    
-   // line.setup();
-  //  mainGroup.add(line.params);
+  //  sliderGroup.add(BoxMax.set("Number of boxes", 5, 1, 100));
     mainGroup.add(sliderGroup);
     gui.setup(mainGroup);
-    ofSetBackgroundColor(255, 255, 153);
     
+    //ofSetFrameRate(5);
+   // ofSetColor(.colours->x, line.colours->y,line.colours->z);
+    ofBackground(0); // set the window background to white
+    mainCam.setPosition(0, 0, 400); // set initial position for our easyCam 3D viewer
+    for (int i=0; i<MaxBoxnumber; i++){
+        ofBoxPrimitive newbox;
+        newbox.set(50);
+        newbox.setPosition(ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+       
+    for(int x=0; x<6; x++){
+        newbox.setSideColor(x, ofColor::fromHsb(ofRandom(230,255),255,255));
+    }
+        boxes.push_back(newbox);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-   
     
-  
+   boxes[ofRandom(boxes.size())] .setPosition(ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+   
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    mainCam.begin();
     
-    ofSetColor(line.colours->x, line.colours->y,line.colours->z, Opacity);
-
-
-    for (int i=0; i<50; i++){
-        ofSetLineWidth(Thickness);
-        ofDrawLine(ofGetWidth()/2, ofGetHeight()/2, ofRandom(0,ofGetWidth()/3), ofRandom(0,ofGetHeight()/3));
-       ofDrawLine(ofGetWidth()/2, ofGetHeight()/2, ofRandom(2*ofGetWidth()/3,ofGetWidth()), ofRandom(2*ofGetHeight()/3,ofGetHeight()));
-
-
-    };
-  
+    myline.draw();
+/*    for (int i=0; i<100; i++) {
+            ofDrawLine(-spaceRange, 50+(i*10), spaceRange, 75+(i*5));
+        }*/
+   
+    
+    //ofSetColor(255,95,31);
+    //ofFill();
+   // ofDrawBox(30);
+    for( int x=0; x<boxes.size(); x++){
+    boxes[x].draw();
+    }
+    mainCam.end();
     gui.draw();
+   // linePercent=0;
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if (key=='f'){
+        for (int i=0; i<10; i++){
+            ofSetLineWidth(Thickness);
+            myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+            
+            
+        }
+        myline.close();
+      
+        
+    }
 }
 
 //--------------------------------------------------------------
@@ -90,6 +115,6 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }

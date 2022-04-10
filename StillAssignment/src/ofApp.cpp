@@ -1,42 +1,49 @@
 #include "ofApp.h"
+#include <complex>
+#include <iostream>
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetFrameRate(5);
-    sliderGroup.setName("sliders");
-    sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
-    sliderGroup.add(Opacity.set("Opacity",190,50,255));
-    
-   // line.setup();
-  //  mainGroup.add(line.params);
-    mainGroup.add(sliderGroup);
-    gui.setup(mainGroup);
-    ofSetBackgroundColor(255, 255, 153);
-    
+    double minR, maxR, minI, maxI;
+    int maxIteration=200;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-   
-    
-  
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
-    ofSetColor(line.colours->x, line.colours->y,line.colours->z, Opacity);
+   
 
 
-    for (int i=0; i<50; i++){
-        ofSetLineWidth(Thickness);
-        ofDrawLine(ofGetWidth()/2, ofGetHeight()/2, ofRandom(0,ofGetWidth()/3), ofRandom(0,ofGetHeight()/3));
-       ofDrawLine(ofGetWidth()/2, ofGetHeight()/2, ofRandom(2*ofGetWidth()/3,ofGetWidth()), ofRandom(2*ofGetHeight()/3,ofGetHeight()));
-
-
-    };
-  
-    gui.draw();
+    for( int x; x< ofGetWidth(); x++){
+        for( int y; y<ofGetHeight(); y++){
+            long double a=map(x,0,ofGetWidth(),-2,2);
+            long double b=map(y,0,ofGetHeight(),-2,2);
+            long double ai=a;
+            long double bi=b;
+            for(int n; n<maxIteration; n++){
+                long double a1= a*a-b*b;
+                long double b1= 2*a*b;
+                
+                a=a1+ai;
+                b=b1+bi;
+                
+                if (abs(a1+b1)>2)
+                {
+                    break;
+                }
+                if (n== maxIteration){
+                    ofSetColor(255, 255, 255);
+                    ofDrawCircle(x, y, 10);
+                }
+            }
+            
+}
+    }
 }
 
 //--------------------------------------------------------------
@@ -90,6 +97,6 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
