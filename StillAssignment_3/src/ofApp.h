@@ -27,7 +27,7 @@ class ofApp : public ofBaseApp{
     vector<ofBoxPrimitive> boxes;
     int MaxBoxnumber=10;
     int spaceRange=300;
-    ofLight light;
+ 
     ofPolyline myline;
     float linePercent;
     ofxPanel gui;
@@ -36,7 +36,7 @@ class ofApp : public ofBaseApp{
     ofParameterGroup mainGroup;
     ofParameter<int> Thickness;
     ofParameter<int> BoxMax;
-    lines line;
+    bool white=false;
 
     
 };

@@ -26,11 +26,10 @@ class ofApp : public ofBaseApp{
     vector<ofBoxPrimitive> boxes;
     int MaxBoxnumber=20;
     int spaceRange=300;
-    ofLight light;
     ofPolyline myline;
-    float linePercent;
     ofxPanel gui;
     int perlinHeight;
+    bool white;
     ofParameterGroup sliderGroup;
     ofParameterGroup mainGroup;
     ofParameter<int> Thickness;

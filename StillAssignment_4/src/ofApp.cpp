@@ -8,14 +8,13 @@ void ofApp::setup(){
     sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
    
     
-  //  sliderGroup.add(BoxMax.set("Number of boxes", 5, 1, 100));
+
     mainGroup.add(sliderGroup);
     gui.setup(mainGroup);
     
-    //ofSetFrameRate(5);
-   // ofSetColor(.colours->x, line.colours->y,line.colours->z);
-    ofBackground(255,95,31); // set the window background to white
-    mainCam.setPosition(0, 0, 400); // set initial position for our easyCam 3D viewer
+    
+    ofBackground(255,95,31); // set the window background to orage
+    mainCam.setPosition(0, 0, 400); // set initial position for the easyCam 3D viewer
     for (int i=0; i<MaxBoxnumber; i++){
         ofBoxPrimitive newbox;
         newbox.set(50);
@@ -44,36 +43,49 @@ void ofApp::draw(){
             ofDrawLine(-spaceRange, 50+(i*10), spaceRange, 75+(i*5));
         }*/
    
-    
-    //ofSetColor(255,95,31);
-    //ofFill();
-   // ofDrawBox(30);
+ 
     for( int x=0; x<boxes.size(); x++){
     boxes[x].draw();
     }
     mainCam.end();
     gui.draw();
-   // linePercent=0;
+  
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key=='f'){
-        for (int i=0; i<10; i++){
-            ofSetLineWidth(Thickness);
-            myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+        if (key=='f'){
+            for (int i=0; i<7; i++){
+                
+                ofSetLineWidth(Thickness);
+                if (white){
+                    ofSetColor(255);
+                    
+                        myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+                    
+                    myline.close();}
+                else
+                    ofSetColor(0);
+                
+                    myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+                myline.close();
+                    
+              }
             
             
-        }
-        myline.close();
+            white=!white;
+                
+            }
+        
+       // myline.close();
       
         
-    }
+    
     if (key == OF_KEY_UP){
-        spaceRange+=10;
+        spaceRange+=20;
     }
     if (key == OF_KEY_DOWN){
-        spaceRange-=10;
+        spaceRange-=20;
     }
 }
 

@@ -6,14 +6,13 @@ void ofApp::setup(){
     
     sliderGroup.setName("sliders");
     sliderGroup.add(Thickness.set("Thickness", 1, 1, 5));
-  //  sliderGroup.add(BoxMax.set("Number of boxes", 5, 1, 100));
+
     mainGroup.add(sliderGroup);
     gui.setup(mainGroup);
     
-    //ofSetFrameRate(5);
-   // ofSetColor(.colours->x, line.colours->y,line.colours->z);
-    ofBackground(0); // set the window background to white
-    mainCam.setPosition(0, 0, 400); // set initial position for our easyCam 3D viewer
+   
+    ofBackground(245,95,31); // set the window background to orange
+    mainCam.setPosition(0, 0, 400); // set initial position for the easyCam 3D viewer
     for (int i=0; i<MaxBoxnumber; i++){
         ofBoxPrimitive newbox;
         newbox.set(50);
@@ -43,9 +42,6 @@ void ofApp::draw(){
         }*/
    
     
-    //ofSetColor(255,95,31);
-    //ofFill();
-   // ofDrawBox(30);
     for( int x=0; x<boxes.size(); x++){
     boxes[x].draw();
     }
@@ -58,16 +54,32 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if (key=='f'){
         for (int i=0; i<10; i++){
-            ofSetLineWidth(Thickness);
-            myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
             
+            ofSetLineWidth(Thickness);
+            if (white){
+                ofSetColor(255);
+                
+                    myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+                
+            }
+            else
+                ofSetColor(0);
+            
+                myline.addVertex(ofRandom(-spaceRange,spaceRange), ofRandom(-spaceRange,spaceRange),ofRandom(-spaceRange,spaceRange));
+            myline.close();
+                
+            }
+        
+        
+        white=!white;
             
         }
+    
         myline.close();
       
         
     }
-}
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
