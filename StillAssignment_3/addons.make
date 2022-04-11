@@ -1,2 +1,0 @@
-ofxDelaunay-master
-ofxGui
